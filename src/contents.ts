@@ -161,9 +161,12 @@ export class S3Drive implements Contents.IDrive {
       filename = basename + uniqueSuffix;
     }
     console.log(options);
+    if (options.type === 'notebook') {
+      console.log("type is notebook, changing type to file.")
+      options.type = 'file';
+    }
+    
     switch (options.type) {
-      case 'notebook':
-        options.path = '';
       case 'file':
         s3contents = await s3.writeFile(options.path + '/' + filename, '');
         break;
