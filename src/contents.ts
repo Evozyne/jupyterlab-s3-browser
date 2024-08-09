@@ -160,7 +160,9 @@ export class S3Drive implements Contents.IDrive {
       uniqueSuffix++;
       filename = basename + uniqueSuffix;
     }
+    console.log(options.type)
     switch (options.type) {
+      case 'notebook':
       case 'file':
         s3contents = await s3.writeFile(options.path + '/' + filename, '');
         break;
